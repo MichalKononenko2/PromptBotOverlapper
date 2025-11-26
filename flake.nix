@@ -1,4 +1,5 @@
 {
+  description = "A simple app to determine the overlap between two prompts";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   };
