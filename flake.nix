@@ -1,20 +1,37 @@
 {
-  description = "A simple app to determine the overlap between two prompts";
+  description = "A development environment for the Content Assessment and LLM Tokenization App";
+
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    self,
-    nixpkgs
-  }: let
-    pkgs = nixpkgs.legacyPackages."x86_64-linux";
-  in {
-    packages."x86_64-linux".default = pkgs.buildNpmPackage {
-      pname = "prompt-overlapper";
-      version = "0.0.1";
-      src = ./.;
-      npmDepsHash = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
-    };
-  };
+  outputs = { self, nixpkgs, flake-utils }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        devShells.default = pkgs.mkShell {
+          name = "content-evaluator-dev";
+
+          # Packages necessary for developing a TypeScript/Angular app
+          packages = with pkgs; [
+            nodejs_20
+            typescript
+            nodePackages.npm
+            # Add angular-cli if you intend to use full Angular tooling
+            # nodePackages.angular-cli
+          ];
+
+          # Environment variables and setup commands
+          shellHook = ''
+            echo "--- Welcome to the Content Evaluator Dev Shell ---"
+            echo "Node.js (v20) and TypeScript are available."
+            echo "You can start development by installing dependencies (e.g., 'npm install')."
+          '';
+        };
+      }
+    );
 }
+
