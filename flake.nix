@@ -1,7 +1,7 @@
 {
-  description = "A development environment for the Content Assessment and LLM Tokenization App";
+  description = "The Content Assessment and LLM Tokenization App";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -19,8 +19,6 @@
             nodejs_20
             typescript
             nodePackages.npm
-            # Add angular-cli if you intend to use full Angular tooling
-            # nodePackages.angular-cli
           ];
 
           # Environment variables and setup commands
