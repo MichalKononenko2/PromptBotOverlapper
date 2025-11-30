@@ -9,12 +9,7 @@ def escape( str_xml: str ):
     str_xml = str_xml.replace("'", "&apos;")
     return str_xml
 
-if __name__ == '__main__':
-    print("Enter what to write. Press Ctrl + D when done. : ")
-    assignment = sys.stdin.readlines()
-    print("Enter text. Press Ctrl + D when done. : ")
-    response = sys.stdin.readlines()
-    print(f'''
+prompt = '''
 Your task is to determine whether a response string denoted by <response> in the XML schema
 defintion below matches the assignment string denoted by <assignment>. Your output must be a
 value <grade> between 0 and 1. The XML schemas for the input you will receive, and the output
@@ -52,9 +47,16 @@ Your input is below. What is your response?
 
 ```xml
 <document>
-  <assignment>{escape(''.join(assignment))}</assignment>
-  <response>{escape(''.join(response))}</response>
+  <assignment>{0}</assignment>
+  <response>{1}</response>
 </document>
 ```
 '''
-  )
+
+if __name__ == '__main__':
+    print("Enter what to write. Press Ctrl + D when done. : ")
+    assignment = sys.stdin.readlines()
+    print("Enter text. Press Ctrl + D when done. : ")
+    response = sys.stdin.readlines()
+    print(prompt.format(escape(''.join(assignment)), escape(''.join(response))))
+
