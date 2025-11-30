@@ -11,7 +11,7 @@
         pkgs = nixpkgs.legacyPackages.${system};
       in
       {
-        devShells.default = pkgs.mkShell {
+        devShell = pkgs.mkShell {
           name = "content-evaluator-dev";
 
           # Packages necessary for developing a TypeScript/Angular app
