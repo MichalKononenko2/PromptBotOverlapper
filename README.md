@@ -1,6 +1,6 @@
 # Installation
 
-Install ``nix'' to get started. You can get it [here](https://zero-to-nix.com/concepts/nix-installer/).
+Install ``nix`` to get started. You can get it [here](https://zero-to-nix.com/concepts/nix-installer/).
 To quote from ``zero-to-nix.com``, you can install nix by running
 
 ```
