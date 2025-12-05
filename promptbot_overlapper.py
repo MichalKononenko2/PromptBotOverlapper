@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import os
 import time
 import json
@@ -16,8 +17,6 @@ def get_relevance_score(prompt: str, text: str) -> int:
     Calls the Gemini API to get a relevance score (0-100) for the text based on the prompt.
     Includes exponential backoff for robustness.
     """
-    if not prompt or not text:
-        return 0
 
     system_prompt = (
         "You are an expert content assessment tool. Your only task is to analyze the 'Target Prompt' and the "
